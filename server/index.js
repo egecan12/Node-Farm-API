@@ -29,6 +29,7 @@ const server = http.createServer((req, res) => {
   } else if (pathName === "products") {
     res.end("this is the products Page");
   } else if (pathName === "/api") {
+    console.log(typeof data);
     res.end(data);
   } else {
     res.writeHead(404, {

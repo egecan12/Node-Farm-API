@@ -13,6 +13,7 @@ const TemplateOverview = () => {
       .get("http://localhost:8000/api")
       .then((response) => {
         setData(response.data);
+        console.log(typeof response.data);
         console.log("Response:", response.data); // Log the response data
       })
       .catch((error) => {

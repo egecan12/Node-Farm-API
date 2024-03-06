@@ -1,94 +1,185 @@
 /* component.card.css */
 
 .card {
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  background-color: #ffffff;
-  margin: 16px;
-  padding: 16px;
-  text-align: center;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .card__emoji {
-    font-size: 48px;
-    margin-bottom: 12px;
-  }
-
-  .card__title-box {
-    margin-bottom: 16px;
-  }
-
-  .card__title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #333333;
-  }
-
-  .card__details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 16px;
-  }
-
-  .card__detail-box {
-    flex: 1;
-    padding: 0 8px;
-  }
-
-  .card__detail {
-    font-size: 16px;
-    color: #555555;
-  }
-
-  .card__detail--organic {
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
-    background-color: #4caf50;
-    color: #ffffff;
-    padding: 8px;
-    border-radius: 6px;
-  }
-
-  .card__detail--price {
-    font-weight: bold;
-    color: #e91e63;
-    font-size: 18px;
-  }
-
-  .card__link {
-    display: inline-block;
-    margin-top: 16px;
-    text-decoration: none;
-    color: #2196f3;
-    font-weight: bold;
-    border: 2px solid #2196f3;
-    border-radius: 6px;
-    padding: 10px 20px;
-    transition: background-color 0.3s, color 0.3s;
-
-    &:hover {
-      background-color: #2196f3;
-      color: #ffffff;
-    }
-  }
-
-  .emoji-right {
-    margin-left: 4px;
-    font-size: 18px;
-  }
+  background: white;
+  box-shadow: 0 2rem 6rem 1rem rgba(0, 0, 0, 0.15);
+  margin-bottom: 5rem;
+  transform: skewX(-20deg);
+  display: flex;
+  transition: all 0.5s;
 }
 
-/* Additional styles for overall container (if needed) */
-.cards-container {
+.card__emoji {
+  font-size: 5.5rem;
+  line-height: 1.2;
+  padding: 1.5rem 6rem 0.5rem 1.5rem;
+  letter-spacing: -4rem;
+  transform: skewX(20deg);
+}
+
+.card__title-box {
+  background: linear-gradient(to bottom, #9be15d, #00e3ae);
+  margin-right: auto;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 3rem;
+}
+
+.card__title {
+  font-family: 'Megrim', sans-serif;
+  color: white;
+  font-size: 3.25rem;
+  transform: skewX(20deg);
+}
+
+.card__details {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.card__detail-box {
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.card__detail-box:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.card__detail {
+  font-weight: 400;
+  font-size: 1.8rem;
+  transform: skewX(20deg);
+  padding: 1.75rem;
+}
+
+.card__detail--organic {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.9rem;
+  background-image: linear-gradient(to right, #9be15d, #00e3ae);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card__detail--price {
+  font-weight: 900;
+  font-size: 1.9rem;
+}
+
+.card__link {
+  flex: 0 0 auto;
+  background-color: #79e17b;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 2.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  transition: all 0.3s;
+}
+
+.card__link:hover,
+.card__link:active {
+  background-color: #9be15d;
+}
+
+.card__link span {
+  transform: skewX(20deg);
+}
+
+.card:hover {
+  transform: skewX(-20deg) scale(1.08);
+  box-shadow: 0 3rem 8rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.emoji-left {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.emoji-right {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
+/* .not-organic {
+  display: none;
+} */
+/* component.card.css */
+
+/* ... (previous styles) ... */
+
+.card__detail--organic {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.9rem;
+  background-image: linear-gradient(to right, #9be15d, #00e3ae);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card__detail--price {
+  font-weight: 900;
+  font-size: 1.9rem;
+}
+
+.card__link {
+  flex: 0 0 auto;
+  background-color: #79e17b;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 2.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.card__link:hover,
+.card__link:active {
+  background-color: #9be15d;
+}
+
+.card__link span {
+  transform: skewX(20deg);
+}
+
+.card:hover {
+  transform: skewX(-20deg) scale(1.08);
+  box-shadow: 0 3rem 8rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+/* Updated styling for non-organic items */
+.not-organic {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.9rem;
+  background-color: #1e2fe9;
+  color: #ffffff;
+  padding: 1.75rem;
+  border-radius: 6px;
+  margin-right: auto; /* Ensures it's at the end of the row */
+}
+
+.emoji-left {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.emoji-right {
+  font-size: 2rem;
+  margin-left: 1rem;
 }
