@@ -16,15 +16,16 @@ Navigate to the `server` and `client` directories and run:
 
 ```bash
 npm install
+```
 
 This will install the required dependencies for both the server and the client.
 Running the Server
 
 In the server directory, run:
 
-bash
-
+```bash
 npm start
+```
 
 This will start the Node.js server.
 
@@ -33,9 +34,9 @@ Running the React Project
 
 In the client directory, run:
 
-bash
-
+```bash
 npm start
+```
 
 This will start the React development server.
 
@@ -48,7 +49,3 @@ Additional Information
 Happy coding!
 
 javascript
-
-
-Just replace `<Your Project Name>` with the actual name of your project, and you're good to
-```
