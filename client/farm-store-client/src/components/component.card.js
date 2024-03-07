@@ -33,7 +33,7 @@ const TemplateCard = ({ data }) => {
             </div>
           </div>
 
-          <a className="card__link" href={`/product?id=${data.id}`}>
+          <a className="card__link" href={`/product/${data.id}`}>
             <span>
               Detail <i className="emoji-right">👉</i>
             </span>

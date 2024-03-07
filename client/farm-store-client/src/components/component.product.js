@@ -1,65 +1,51 @@
-import React, { Fragment } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "./component.product.css";
 
-const ProductPage = ({
-  organic,
-  image,
-  description,
-  price,
-  quantity,
-  nutrients,
-  from,
-  productName,
-}) => {
+const ProductComponent = () => {
+  const [data, setData] = useState([]);
+
+  // Inside your component
+  const { id: productId } = useParams();
+
+  useEffect(() => {
+    // Axios call to fetch data
+
+    axios
+      .get(`http://localhost:8000/product?id=${productId}`)
+      .then((response) => {
+        setData(response.data);
+        console.log("Response:", response.data); // Log the response data
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
   return (
-    <Fragment>
+    <div className="container">
       <h1>🌽 Node Farm 🥦</h1>
-
       <figure className="product">
-        <div className={`product__organic ${!organic ? "not-organic" : ""}`}>
+        {/* <div
+          className={`product__organic ${!data.organic ? "not-organic" : ""}`}
+        >
           <h5>Organic</h5>
-        </div>
-        <a href="/overview" className="product__back">
+        </div> */}
+        <a href="/" className="product__back">
           <span className="emoji-left">👈</span>Back
         </a>
-        <div className="product__hero">
-          <span className="product__emoji product__emoji--1">{image}</span>
-          <span className="product__emoji product__emoji--2">{image}</span>
-          <span className="product__emoji product__emoji--3">{image}</span>
-          <span className="product__emoji product__emoji--4">{image}</span>
-          <span className="product__emoji product__emoji--5">{image}</span>
-          <span className="product__emoji product__emoji--6">{image}</span>
-          <span className="product__emoji product__emoji--7">{image}</span>
-          <span className="product__emoji product__emoji--8">{image}</span>
-          <span className="product__emoji product__emoji--9">{image}</span>
-        </div>
-        <h2 className="product__name">{productName}</h2>
-        <div className="product__details">
-          <p>
-            <span className="emoji-left">🌍</span>From {from}
-          </p>
-          <p>
-            <span className="emoji-left">❤️</span>
-            {nutrients}
-          </p>
-          <p>
-            <span className="emoji-left">📦</span>
-            {quantity}
-          </p>
-          <p>
-            <span className="emoji-left">🏷</span>
-            {price}€
-          </p>
-        </div>
-
-        <a href="#" className="product__link">
-          <span className="emoji-left">🛒</span>
-          <span>Add to shopping card ({price}€)</span>
-        </a>
-
-        <p className="product__description">{description}</p>
+        <div className="card__emoji">{data.image}</div>
+        <figcaption className="product__info">
+          <h2 className="product__name">{data.productName}</h2>
+          <h3 className="product__from">From {data.from}</h3>
+          <p className="product__description">{data.description}</p>
+          <h3 className="product__price">Only {data.price} 💰</h3>
+          <p className="product__price-value">{data.quantity} in stock</p>
+          <h3 className="product__nutrients">{data.nutrients}</h3>
+        </figcaption>
       </figure>
-    </Fragment>
+    </div>
   );
 };
 
-export default ProductPage;
+export default ProductComponent;

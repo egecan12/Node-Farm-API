@@ -19,17 +19,27 @@ const dataObject = JSON.parse(data);
 
 const server = http.createServer((req, res) => {
   cors(corsOptions)(req, res, () => {});
+  const pathName = url.parse(req.url, true).pathname;
+  const queryObject = url.parse(req.url, true).query;
 
-  console.log(req.url);
-
-  const pathName = req.url;
-
-  if (pathName === "overview" || pathName === "/") {
+  if (pathName === "/overview" || pathName === "/") {
     res.end("this is the overview Page");
-  } else if (pathName === "products") {
-    res.end("this is the products Page");
+  } else if (pathName === "/product") {
+    const id = queryObject.id;
+    if (id) {
+      const product = dataObject.find((item) => item.id === Number(id));
+      if (product) {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(product));
+      } else {
+        res.writeHead(404, { "Content-Type": "text/plain" });
+        res.end("Product not found");
+      }
+    } else {
+      // Handle requests without an id parameter
+    }
   } else if (pathName === "/api") {
-    console.log(typeof data);
+    // console.log(typeof data);
     res.end(data);
   } else {
     res.writeHead(404, {
