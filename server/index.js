@@ -2,6 +2,7 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 const cors = require("cors"); // Import the cors middleware
+const slugify = require("slugify");
 
 const corsOptions = {
   origin: "http://localhost:3000", // Replace with the origin of your React app
@@ -16,16 +17,36 @@ const data = fs.readFileSync(
   (err, data) => {}
 );
 const dataObject = JSON.parse(data);
+// const slugs = dataObject.map((item) => {
+//   return slugify(item.productName, { lower: true });
+// });
+// console.log(slugs);
 
 const server = http.createServer((req, res) => {
   cors(corsOptions)(req, res, () => {});
   const pathName = url.parse(req.url, true).pathname;
   const queryObject = url.parse(req.url, true).query;
+  // console.log(queryObject.slug);
 
   if (pathName === "/overview" || pathName === "/") {
     res.end("this is the overview Page");
   } else if (pathName === "/product") {
     const id = queryObject.id;
+    //this is for slug usage
+
+    // const slug = queryObject.slug;
+    // if (slug) {
+    //   const product = dataObject.find(
+    //     (item) => slugify(item.productName, { lower: true }) === slug
+    //   );
+    //   if (product) {
+    //     res.writeHead(200, { "Content-Type": "application/json" });
+    //     res.end(JSON.stringify(product));
+    //   } else {
+    //     res.writeHead(404, { "Content-Type": "text/plain" });
+    //     res.end("Product not found");
+    //   }
+    // }
     if (id) {
       const product = dataObject.find((item) => item.id === Number(id));
       if (product) {
@@ -36,7 +57,7 @@ const server = http.createServer((req, res) => {
         res.end("Product not found");
       }
     } else {
-      // Handle requests without an id parameter
+      //Handle requests without an id parameter
     }
   } else if (pathName === "/api") {
     // console.log(typeof data);
